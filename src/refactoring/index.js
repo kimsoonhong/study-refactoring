@@ -13,21 +13,30 @@ function statement(invoice, plays) {
 
 	for (let perf of invoice.performances) {
 		const play = plays[perf.playID]; // object {name, type}
-		let thisAmount = 0;
+		let thisAmount = amountFor(perf, play);
 
-		switch (play.type) {
-			case "tragedy": //비극
-				thisAmount = 40000;
-				if (perf.audience > 30) thisAmount += 1000 * (perf.audience - 30);
-				break;
-			case "comedy": //희극
-				thisAmount = 30000;
-				if (perf.audience > 20) thisAmount += 1000 + 500 * (perf.audience - 20);
-				thisAmount += 300 * perf.audience;
-				break;
-			default:
-				throw new Error(`알 수 없는 장르: ${play.type}`);
+		function amountFor(perf, play) {
+			let thisAmount = 0;
+			switch (play.type) {
+				case "tragedy": //비극
+					thisAmount = 40000;
+					if (perf.audience > 30) {
+						thisAmount += 1000 * (perf.audience - 30);
+					}
+					break;
+				case "comedy": //희극
+					thisAmount = 30000;
+					if (perf.audience > 20) {
+						thisAmount += 1000 + 500 * (perf.audience - 20);
+					}
+					thisAmount += 300 * perf.audience;
+					break;
+				default:
+					throw new Error(`알 수 없는 장르: ${play.type}`);
+			}
+			return thisAmount;
 		}
+
 		// 포인트를 적립한다.
 		volumeCredits += Math.max(perf.audience - 30, 0);
 		// 희극 관객 5명마다 추가 포인트를 제공한다.
