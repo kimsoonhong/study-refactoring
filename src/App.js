@@ -1,7 +1,7 @@
-import Refactoring from "./refactoring/refactoring";
+import Statement from "./refactoring/statement";
 
 function App() {
-	return <Refactoring />;
+	return <Statement />;
 }
 
 export default App;

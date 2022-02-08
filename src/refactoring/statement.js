@@ -1,6 +1,6 @@
 import createStatementData from "./CreateStatementData";
 
-function statement(invoice, plays) {
+export default function statement(invoice, plays) {
 	return renderPlaninText(createStatementData(invoice, plays));
 }
 
