@@ -37,16 +37,15 @@ export default function createStatementData(invoice, plays) {
 }
 
 function createPerformanceCalculator(aPerformance, aPlay) {
-	switch ((aPlay, type)) {
+	switch (aPlay.type) {
 		case "tragedy":
 			return new TragedyCalculator(aPerformance, aPlay);
 		case "comedy":
 			return new ComedyCalculator(aPerformance, aPlay);
 		default:
-			throw new Error(`알 수 없는 장르 : ${aPlay.type}`);
+			throw new Error(`알수없는경로: ${aPlay.type}`);
 	}
 }
-
 class PerformanceCalculator {
 	constructor(aPerformance, aPlay) {
 		this.performance = aPerformance;
@@ -61,14 +60,17 @@ class PerformanceCalculator {
 		return Math.max(this.performance.audience - 30, 0);
 	}
 }
-
 class TragedyCalculator extends PerformanceCalculator {
 	get amount() {
 		let result = 40000;
 		if (this.performance.audience > 30) {
-			result += 1000 * (this, performances.audience - 30);
+			result += 1000 * (this.performance.audience - 30);
 		}
 		return result;
+	}
+
+	get volumeCredits() {
+		return Math.max(this.performance.audience - 30, 0);
 	}
 }
 class ComedyCalculator extends PerformanceCalculator {

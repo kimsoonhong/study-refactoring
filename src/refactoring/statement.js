@@ -4,11 +4,11 @@ export default function statement(invoice, plays) {
 	return renderPlaninText(createStatementData(invoice, plays));
 }
 
-function renderPlaninText(data, plays) {
+function renderPlaninText(data) {
 	let result = `청구 내역(고객명: ${data.customer})\n`;
 
 	for (let perf of data.performances) {
-		result += `${perf.play.name}:${use(perf.amount)}(${perf.audience}석)\n`;
+		result += `${perf.play.name}:${usd(perf.amount)}(${perf.audience}석)\n`;
 	}
 	result += `총액: ${usd(data.totalAmount())}\n`;
 	result += `적립 포인트: ${data.totalVolumeCredits()}점\n`;
