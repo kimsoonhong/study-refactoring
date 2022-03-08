@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import Ch68 from "./refactoring/c68";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<Ch68 />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
